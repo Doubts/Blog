@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls import include, url
+from django.conf.urls.static import static
+from django.contrib import admin
+
+from blogpost import views as blog_post_views
+
 
 urlpatterns = [
+    url(r'^$', blog_post_views.index),
+    url(r'^blog/(?P<slug>[^\.]+).html', blog_post_views.view_post, name='view_blog_post'),
     url(r'^admin/', admin.site.urls),
 ]
